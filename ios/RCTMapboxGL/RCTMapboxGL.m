@@ -154,7 +154,7 @@
 }
 
 - (NSArray<id<RCTComponent>> *)reactSubviews {
-    return _reactSubviews;
+    return nil;
 }
 
 
