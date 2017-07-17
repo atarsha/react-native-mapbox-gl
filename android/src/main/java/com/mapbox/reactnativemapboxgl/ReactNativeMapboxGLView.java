@@ -39,6 +39,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.ArrayList;
 
 import javax.annotation.Nullable;
 
@@ -681,8 +682,16 @@ public class ReactNativeMapboxGLView extends RelativeLayout implements
         return _map.getCameraPosition();
     }
 
+    // This is a garbage hotfix for this bug. Better solutions would be fantastic
     public LatLngBounds getBounds() {
-        if (_map == null) { return new LatLngBounds.Builder().build(); }
+        if (_map == null) {
+            LatLng pointA = new LatLng();
+            LatLng pointB = new LatLng();
+            ArrayList<LatLng> tmpLatLngs = new ArrayList<LatLng>();
+            tmpLatLngs.add(pointA);
+            tmpLatLngs.add(pointB);
+            return new LatLngBounds.Builder().includes(tmpLatLngs).build();
+        }
         return _map.getProjection().getVisibleRegion().latLngBounds;
     }
 
