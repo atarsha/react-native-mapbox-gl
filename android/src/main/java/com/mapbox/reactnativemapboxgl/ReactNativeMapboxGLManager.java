@@ -196,6 +196,11 @@ public class ReactNativeMapboxGLManager extends ViewGroupManager<ReactNativeMapb
         double lon = coord.getDouble("longitude");
         view.setInitialCenterCoordinate(lat, lon);
     }
+    
+    @ReactProp(name = "zOrderTop")
+    public void setZOrderTop(ReactNativeMapboxGLView view, boolean value) {
+        view.setZOrderTop(value);
+    }
 
     @ReactProp(name = "enableOnRegionDidChange")
     public void setEnableOnRegionDidChange(ReactNativeMapboxGLView view, boolean value) {
